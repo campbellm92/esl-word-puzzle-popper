@@ -1,7 +1,7 @@
 import Button from "./Button";
 import SlideInContent from "../animations/SlideInContent";
 
-export default function IntroScreen() {
+export default function IntroScreen({ onStart }) {
   return (
     <SlideInContent distance={300} reverse={true}>
       <div className="flex justify-center text-center w-screen h-auto">
@@ -12,7 +12,7 @@ export default function IntroScreen() {
           <p className="text-xl mb-4">
             Click on the correct words as they appear on the screen.
           </p>
-          <Button>New Game</Button>
+          <Button onClick={onStart}>New Game</Button>
         </div>
       </div>
     </SlideInContent>
