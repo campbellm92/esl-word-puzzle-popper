@@ -39,7 +39,9 @@ export default function useFetchWords(wordListPath) {
 
         const gameWordsArray = [...correctWords, incorrectWord];
 
-        setWords(gameWordsArray);
+        const shuffledGameWordsArray = shuffleWordsArray(gameWordsArray);
+
+        setWords(shuffledGameWordsArray);
       } catch (error) {
         console.error("Failed to fetch data: ", error);
       }
@@ -47,5 +49,5 @@ export default function useFetchWords(wordListPath) {
     fetchAndPrepareWords();
   }, [wordListPath]);
 
-  return { words };
+  return { words, setWords };
 }
