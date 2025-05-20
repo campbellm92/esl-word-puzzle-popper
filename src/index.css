@@ -4,13 +4,14 @@
 :root {
   font-family: "Ubuntu", sans-serif;
   color: oklch(96.7% 0.001 286.375);
-  background-color: oklch(27.1% 0.105 12.094);
+  background-color: oklch(45.5% 0.188 13.697);
 }
 
 body {
+  width: 100vw;
+  height: 100vh;
   margin: 0;
   display: flex;
-  place-items: center;
-  min-width: 320px;
-  min-height: 100vh;
+  justify-content: center;
+  align-items: center;
 }
