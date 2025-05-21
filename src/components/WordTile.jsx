@@ -1,6 +1,18 @@
 import ClickSpark from "../animations/ClickSpark";
 
-export default function WordTile({ children }) {
+export default function WordTile({
+  children,
+  onClick,
+  isClicked = false,
+  isCorrect = false,
+}) {
+  function getStyles() {
+    if (isClicked) {
+      return isCorrect ? "text-green-500" : "text-red-500";
+    }
+    return "text-zinc-700";
+  }
+
   return (
     <>
       <ClickSpark
@@ -8,8 +20,11 @@ export default function WordTile({ children }) {
         sparkSize={40}
         duration={300}
       >
-        <div className="text-center bg-zinc-200 w-fit h-auto p-4 rounded-md border-4 border-zinc-900 cursor-pointer">
-          <p className="text-zinc-700 text-3xl font-semibold">{children}</p>
+        <div
+          className={`${getStyles()} text-center text-3xl font-semibold bg-zinc-200 w-full sm:w-auto h-auto p-4 rounded-md border-4 border-zinc-900 cursor-pointer`}
+          onClick={() => onClick(children)}
+        >
+          {children}
         </div>
       </ClickSpark>
     </>
