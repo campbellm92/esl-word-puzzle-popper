@@ -4,10 +4,13 @@ import { shuffleWordsArray } from "../utils/shuffleWordsArray";
 
 export default function useFetchWords(wordListPath) {
   const [words, setWords] = useState([]);
-  //   const [isLoading, setIsLoading] = useState(true);
+  const [correctWords, setCorrectWords] = useState([]);
+  const [incorrectWord, setIncorrectWord] = useState(null);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     async function fetchAndPrepareWords() {
+      setIsLoading(true);
       try {
         const response = await fetch(wordListPath);
         const data = await response.json();
@@ -42,6 +45,9 @@ export default function useFetchWords(wordListPath) {
         const shuffledGameWordsArray = shuffleWordsArray(gameWordsArray);
 
         setWords(shuffledGameWordsArray);
+        setCorrectWords(correctWords);
+        setIncorrectWord(incorrectWord);
+        setIsLoading(false);
       } catch (error) {
         console.error("Failed to fetch data: ", error);
       }
@@ -49,5 +55,5 @@ export default function useFetchWords(wordListPath) {
     fetchAndPrepareWords();
   }, [wordListPath]);
 
-  return { words, setWords };
+  return { words, setWords, correctWords, incorrectWord, isLoading };
 }
